@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "394915113110",
+    "firebase_url": "https://meetingorganizer-d6083.firebaseio.com",
+    "project_id": "meetingorganizer-d6083",
+    "storage_bucket": "meetingorganizer-d6083.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394915113110:android:92c1644b026910e6",
+        "android_client_info": {
+          "package_name": "com.example.jongha.meetingorganizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394915113110-eniih9ejo8fucfa7u4ihrqknptvhg54t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jongha.meetingorganizer",
+            "certificate_hash": "85e8e342b8439f412291bbc2ae7fbe0f74b92398"
+          }
+        },
+        {
+          "client_id": "394915113110-gdueerg99mkv32gi6t3v46mtmev4epcm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaNr-nQ4j95wD8oGz3m50D-V3CGs5UVi0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394915113110-gdueerg99mkv32gi6t3v46mtmev4epcm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
