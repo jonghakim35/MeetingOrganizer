@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.signin.SignIn;
+
 public class SignInActivity extends AppCompatActivity {
 
 
@@ -48,7 +50,15 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // 로그인 버튼 클릭
+                email = emailEdit.getText().toString();
+
+
+                if(!email.isEmpty()) {
+                    // 로그인 버튼 클릭
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
