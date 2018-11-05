@@ -24,7 +24,9 @@
         </intent-filter>
         </activity>
 
-        <activity android:name=".RoomCreateActivity"/>
+
+        <activity android:name=".RoomCreateActivity"
+            android:theme = "@android:style/Theme.Dialog" />
 
         <activity android:name=".TimeTableActivity"/>
 
