@@ -39,7 +39,6 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         if(!email.isEmpty() && !pwd.isEmpty()){
-
             // 받아온 email, pwd EditText에 보여주기
             emailEdit.setText(email);
             pwdEdit.setText(pwd);
@@ -51,7 +50,6 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 email = emailEdit.getText().toString();
-
 
                 if(!email.isEmpty()) {
                     // 로그인 버튼 클릭
@@ -65,14 +63,11 @@ public class SignInActivity extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // 회원가입 버튼 클릭
                 Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         });
-
     }
 }
