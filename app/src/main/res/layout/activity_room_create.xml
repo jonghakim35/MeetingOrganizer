@@ -7,6 +7,28 @@
     android:background="#CECEF6"
     android:layout_gravity="center">
 
+    <TextView
+        android:id="@+id/estimateTimeView"
+        android:layout_width="153dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="248dp"
+        android:text="소요시간"
+        android:typeface="sans"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/roomCreateView"/>
+
+    <EditText
+        android:id="@+id/estimateMin"
+        android:layout_width="84dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintBaseline_toBaselineOf="@id/estimateHour"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
     <EditText
         android:id="@+id/room_code"
         android:layout_width="264dp"
@@ -33,7 +55,7 @@
         app:layout_constraintVertical_bias="0.328"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/roomCreateView"
         android:layout_width="153dp"
         android:layout_height="46dp"
         android:layout_marginStart="14dp"
@@ -42,5 +64,45 @@
         android:text="방 만들기"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/estimateHour"
+        android:layout_width="84dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="2dp"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintLeft_toLeftOf="@id/estimateTimeView"
+        app:layout_constraintTop_toBottomOf="@id/estimateTimeView" />
+
+    <Button
+        android:id="@+id/confirm_create_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="확인"
+        app:layout_constraintEnd_toEndOf="@+id/room_code"
+        app:layout_constraintTop_toBottomOf="@+id/estimateMin" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="시간"
+        app:layout_constraintBottom_toBottomOf="@+id/estimateHour"
+        app:layout_constraintStart_toEndOf="@+id/estimateHour" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="분"
+        app:layout_constraintBottom_toBottomOf="@+id/estimateMin"
+        app:layout_constraintStart_toEndOf="@+id/estimateMin" />
 
 </android.support.constraint.ConstraintLayout>
