@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="450dp"
+    android:layout_height="400dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#CECEF6"
     android:layout_gravity="center">
@@ -11,13 +11,13 @@
         android:id="@+id/estimateTimeView"
         android:layout_width="153dp"
         android:layout_height="46dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="8dp"
         android:text="소요시간"
         android:typeface="sans"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/roomCreateView"/>
+        app:layout_constraintBottom_toTopOf="@id/estimateHour"
+        app:layout_constraintLeft_toLeftOf="@id/roomCreateView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/estimateMin"
@@ -45,14 +45,11 @@
         android:id="@+id/room_name"
         android:layout_width="264dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="32dp"
         android:hint="방 이름"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.328"/>
+        app:layout_constraintTop_toBottomOf="@+id/roomCreateView" />
 
     <TextView
         android:id="@+id/roomCreateView"
@@ -69,21 +66,22 @@
         android:id="@+id/estimateHour"
         android:layout_width="84dp"
         android:layout_height="42dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="2dp"
-        android:ems="10"
+        android:layout_marginLeft="14dp"
+        android:layout_marginBottom="20dp"
         android:inputType="time"
-        app:layout_constraintLeft_toLeftOf="@id/estimateTimeView"
-        app:layout_constraintTop_toBottomOf="@id/estimateTimeView" />
+        app:layout_constraintBottom_toTopOf="@+id/confirm_create_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 
     <Button
         android:id="@+id/confirm_create_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:text="확인"
-        app:layout_constraintEnd_toEndOf="@+id/room_code"
-        app:layout_constraintTop_toBottomOf="@+id/estimateMin" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView4"

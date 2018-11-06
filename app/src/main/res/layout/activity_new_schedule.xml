@@ -34,11 +34,11 @@
         android:layout_width="52dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/start_hour"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/schedule_name" />
+        app:layout_constraintTop_toTopOf="@+id/start_hour" />
 
     <TextView
         android:id="@+id/addScheduleView"
@@ -95,22 +95,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="일정 이름을 입력하세요"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/scheduleNameView"
         app:layout_constraintStart_toEndOf="@+id/scheduleNameView"
-        app:layout_constraintTop_toBottomOf="@+id/addScheduleView" />
+        app:layout_constraintTop_toTopOf="@+id/scheduleNameView" />
 
     <EditText
         android:id="@+id/start_hour"
         android:layout_width="52dp"
         android:layout_height="36dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/startTimeView"
         app:layout_constraintStart_toStartOf="@+id/schedule_name"
-        app:layout_constraintTop_toBottomOf="@+id/schedule_name" />
+        app:layout_constraintTop_toTopOf="@+id/startTimeView" />
 
     <TextView
         android:id="@+id/textView14"
@@ -136,32 +136,32 @@
         android:id="@+id/end_hour"
         android:layout_width="52dp"
         android:layout_height="36dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/endTimeView"
         app:layout_constraintStart_toStartOf="@+id/start_hour"
-        app:layout_constraintTop_toBottomOf="@+id/start_hour" />
+        app:layout_constraintTop_toTopOf="@+id/endTimeView" />
 
     <EditText
         android:id="@+id/end_min"
         android:layout_width="52dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/end_hour"
         app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/start_min" />
+        app:layout_constraintTop_toTopOf="@+id/end_hour" />
 
     <EditText
         android:id="@+id/day_of_week"
         android:layout_width="52dp"
         android:layout_height="36dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/dayOfWeekView"
         app:layout_constraintStart_toStartOf="@+id/end_hour"
-        app:layout_constraintTop_toBottomOf="@+id/end_hour" />
+        app:layout_constraintTop_toTopOf="@+id/dayOfWeekView" />
 
     <TextView
         android:id="@+id/textView22"
