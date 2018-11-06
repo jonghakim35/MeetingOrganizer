@@ -34,6 +34,8 @@
         <activity android:name=".ChattingActivity"/>
         <activity android:name=".NewScheduleActivity"
             android:theme = "@android:style/Theme.Dialog"/>
+        <activity android:name=".DisplayScheduleActivity"
+            android:theme="@android:style/Theme.Dialog"/>
 
     </application>
 
