@@ -29,6 +29,9 @@
             android:theme = "@android:style/Theme.Dialog" />
 
         <activity android:name=".TimeTableActivity"/>
+        <activity android:name=".RoomEnterActivity"
+            android:theme = "@android:style/Theme.Dialog"/>
+        <activity android:name=".ChattingActivity"/>
 
     </application>
 

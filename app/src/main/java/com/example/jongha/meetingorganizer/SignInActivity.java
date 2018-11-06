@@ -27,7 +27,6 @@ public class SignInActivity extends AppCompatActivity {
         signInBtn = findViewById(R.id.sign_in_submit_btn);
         signUpBtn = findViewById(R.id.sign_in_to_up_btn);
 
-        Intent myIntent = getIntent();
 
         if(getIntent().hasExtra("email")&&getIntent().hasExtra("pwd")) {
 

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         timeTableBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //시간표 생성 버튼 클릭
                 Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
                 startActivity(intent);
                 finish();
