@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 //시간표 생성 버튼 클릭
                 Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
