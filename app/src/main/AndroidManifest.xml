@@ -36,6 +36,8 @@
             android:theme = "@android:style/Theme.Dialog"/>
         <activity android:name=".DisplayScheduleActivity"
             android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".DeleteScheduleActivity"
+            android:theme="@android:style/Theme.Dialog"/>
 
     </application>
 

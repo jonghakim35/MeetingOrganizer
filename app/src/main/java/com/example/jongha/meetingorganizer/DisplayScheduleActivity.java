@@ -1,6 +1,7 @@
 package com.example.jongha.meetingorganizer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -32,6 +33,9 @@ public class DisplayScheduleActivity extends Activity {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(DisplayScheduleActivity.this, DeleteScheduleActivity.class));
+                finish();
                 //delete하는 기능 구현하기
             }
         });
