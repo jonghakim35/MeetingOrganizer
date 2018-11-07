@@ -32,7 +32,7 @@ public class DisplayScheduleActivity extends Activity {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //delete하는것 구현하기
+                //delete하는 기능 구현하기
             }
         });
 

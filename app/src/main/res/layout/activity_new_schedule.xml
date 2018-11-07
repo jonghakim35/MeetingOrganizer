@@ -16,6 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="분"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/end_min"
         app:layout_constraintTop_toTopOf="@+id/end_min" />
 
@@ -26,6 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="시"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/end_hour"
         app:layout_constraintTop_toTopOf="@+id/end_hour" />
 
@@ -42,11 +44,14 @@
 
     <TextView
         android:id="@+id/addScheduleView"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="일정 추가"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +62,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="일정 이름"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addScheduleView" />
 
@@ -67,6 +73,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="시작"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scheduleNameView" />
 
@@ -77,6 +84,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="끝"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTimeView" />
 
@@ -87,6 +95,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="요일"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endTimeView" />
 
@@ -95,10 +104,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="일정 이름을 입력하세요"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/scheduleNameView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/scheduleNameView"
         app:layout_constraintTop_toTopOf="@+id/scheduleNameView" />
 
@@ -119,6 +130,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="시"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/start_hour"
         app:layout_constraintTop_toTopOf="@+id/start_hour" />
 
@@ -129,6 +141,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="분"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/start_min"
         app:layout_constraintTop_toTopOf="@+id/start_min" />
 
@@ -170,6 +183,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="요일"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day_of_week"
         app:layout_constraintTop_toTopOf="@+id/day_of_week" />
 

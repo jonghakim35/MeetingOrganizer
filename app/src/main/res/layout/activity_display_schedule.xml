@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="endMinView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintStart_toEndOf="@+id/textView16" />
 
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="시"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/endHourView"
         app:layout_constraintStart_toEndOf="@+id/endHourView" />
 
@@ -33,6 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="종료:"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -43,6 +46,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="일정이름이 여기에 들어올것임"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +59,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="dateOfWeekView"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -62,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="요일"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/dateOfWeekView"
         app:layout_constraintStart_toEndOf="@+id/dateOfWeekView" />
 
@@ -71,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="startHourView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintStart_toEndOf="@+id/textView12" />
 
@@ -80,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="endHourView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toEndOf="@+id/textView13" />
 
@@ -89,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="시"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/startHourView"
         app:layout_constraintStart_toEndOf="@+id/startHourView" />
 
@@ -98,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="startMinView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView9" />
 
@@ -107,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="분"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/endMinView"
         app:layout_constraintStart_toEndOf="@+id/endMinView" />
 
@@ -117,6 +130,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="시작:"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfWeekView" />
 
