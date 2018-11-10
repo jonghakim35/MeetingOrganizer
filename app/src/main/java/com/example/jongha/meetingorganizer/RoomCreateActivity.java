@@ -7,11 +7,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RoomCreateActivity extends Activity {
 
     private EditText roomNameEdit, roomCodeEdit, hourEdit, minEdit;
     private Button confirmBtn;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +41,10 @@ public class RoomCreateActivity extends Activity {
                 roomCode = roomCodeEdit.getText().toString();
                 hour = hourEdit.getText().toString();
                 min = minEdit.getText().toString();
+
+                ChatRoomDTO newRoom = new ChatRoomDTO(roomCode, hour, min);
+                myRef.child("chatting").child(roomName).setValue(newRoom);
+                Toast.makeText(getApplicationContext(), "채팅방이 생성되었습니다.", Toast.LENGTH_SHORT).show();
 
                 finish();
             }
