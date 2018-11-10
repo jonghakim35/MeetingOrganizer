@@ -30,7 +30,7 @@ public class DisplayScheduleActivity extends Activity {
 
 
         Intent gotintent = getIntent();
-        String[] infoString = getIntent().getStringArrayExtra("dataStrings");
+        final String[] infoString = getIntent().getStringArrayExtra("dataStrings");
 
         scheduleNameView.setText(infoString[0]);
         startHourView.setText(infoString[1]);
@@ -45,8 +45,11 @@ public class DisplayScheduleActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(DisplayScheduleActivity.this, DeleteScheduleActivity.class));
-                finish();
+                Intent intent = new Intent(DisplayScheduleActivity.this, DeleteScheduleActivity.class);
+                String nameToIntent = infoString[0];
+                intent.putExtra("scheduleName", nameToIntent);
+                startActivity(intent);
+
                 //delete하는 기능 구현하기
             }
         });
