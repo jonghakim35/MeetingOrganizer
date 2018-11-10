@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         roomCreateBtn = findViewById(R.id.room_create_btn);
         timeTableBtn = findViewById(R.id.timetable_modify_btn);
 
@@ -38,4 +40,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

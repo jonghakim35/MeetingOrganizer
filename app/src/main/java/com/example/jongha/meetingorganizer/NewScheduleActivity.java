@@ -45,7 +45,7 @@ public class NewScheduleActivity extends Activity {
                 dayOfWeek = dayOfWeekEdit.getText().toString();
                 //userID = database에서 받아오기(현재 사용자 ID)
                 String userID = "test1999";
-                ScheduleDTO sche = new ScheduleDTO(startHour, startMin, endHour, endMin, dayOfWeek);
+                ScheduleDTO sche = new ScheduleDTO(activityName, startHour, startMin, endHour, endMin, dayOfWeek);
 
                 myRef.child("timetables").child(userID).child(activityName).setValue(sche);
 
