@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TimeTableActivity extends AppCompatActivity {
 
@@ -70,10 +72,29 @@ public class TimeTableActivity extends AppCompatActivity {
         });
 
 
+        //listview의 스케쥴 각각에 대한 onclicklistner
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ScheduleDTO item = (ScheduleDTO) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(TimeTableActivity.this, DisplayScheduleActivity.class);
+                String[] infoOfSchedule = new String[] {item.getActivityName(), item.getStartHour(), item.getStartMin(), item.getEndHour(), item.getEndMin(), item.getDayOfWeek()};
+                intent.putExtra("dataStrings", infoOfSchedule);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
+
+        //스케쥴 추가 버튼 onclicklistner
         addScheduleBtn = findViewById(R.id.add_schedule_btn);
         addScheduleBtn.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TimeTableActivity.this, NewScheduleActivity.class));

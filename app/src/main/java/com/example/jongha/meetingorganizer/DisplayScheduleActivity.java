@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class DisplayScheduleActivity extends Activity {
 
-    private TextView startHourView, startMinView, endHourView, endMinView, dateOfWeekView;
+    private TextView startHourView, startMinView, endHourView, endMinView, dateOfWeekView, scheduleNameView;
     private Button confirmBtn, deleteBtn;
 
     @Override
@@ -19,6 +19,7 @@ public class DisplayScheduleActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_display_schedule);
 
+        scheduleNameView = findViewById(R.id.scheduleNameView);
         startHourView = findViewById(R.id.startHourView);
         startMinView = findViewById(R.id.startMinView);
         endHourView = findViewById(R.id.endHourView);
@@ -27,6 +28,16 @@ public class DisplayScheduleActivity extends Activity {
         confirmBtn = findViewById(R.id.scheduleOkBtn);
         deleteBtn=findViewById(R.id.scheduleDeleteBtn);
 
+
+        Intent gotintent = getIntent();
+        String[] infoString = getIntent().getStringArrayExtra("dataStrings");
+
+        scheduleNameView.setText(infoString[0]);
+        startHourView.setText(infoString[1]);
+        startMinView.setText(infoString[2]);
+        endHourView.setText(infoString[3]);
+        endMinView.setText(infoString[4]);
+        dateOfWeekView.setText(infoString[5]);
 
         //onCreate하면 누른 activity의 이름 등 고유정보를 intent로 받아와서 database에서 해당 정보를 찾아 startHourView 등 Textview 내용을 set하는 부분 작성하기
 
