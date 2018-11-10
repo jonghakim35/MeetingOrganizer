@@ -40,5 +40,5 @@
             android:theme="@android:style/Theme.Dialog"/>
 
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

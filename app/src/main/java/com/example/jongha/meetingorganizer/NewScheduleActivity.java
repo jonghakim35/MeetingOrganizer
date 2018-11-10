@@ -6,11 +6,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NewScheduleActivity extends Activity {
 
     private EditText scheduleNameEdit, startHourEdit, startMinEdit, endHourEdit, endMinEdit, dayOfWeekEdit;
     private Button scheduleConfirmBtn;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -37,8 +43,14 @@ public class NewScheduleActivity extends Activity {
                 endHour = endHourEdit.getText().toString();
                 endMin = endMinEdit.getText().toString();
                 dayOfWeek = dayOfWeekEdit.getText().toString();
+                //userID = database에서 받아오기(현재 사용자 ID)
+                String userID = "test1999";
+                ScheduleDTO sche = new ScheduleDTO(startHour, startMin, endHour, endMin, dayOfWeek);
 
-                //입력 받아서 to database 하는 기능 구현하기
+                myRef.child("timetables").child(userID).child(activityName).setValue(sche);
+
+                Toast.makeText(getApplicationContext(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
 
                 finish();
             }
