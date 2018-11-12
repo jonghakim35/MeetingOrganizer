@@ -59,7 +59,10 @@ public class ScheduleListViewAdapter extends BaseAdapter {
     }
 
     public void addItem(ScheduleDTO gotItem) {
-
         listViewItemList.add(gotItem);
+    }
+
+    public void removeItem(ScheduleDTO gotItem){
+        listViewItemList.remove(gotItem);
     }
 }

@@ -42,7 +42,7 @@ public class RoomCreateActivity extends Activity {
                 hour = hourEdit.getText().toString();
                 min = minEdit.getText().toString();
 
-                ChatRoomDTO newRoom = new ChatRoomDTO(roomCode, hour, min);
+                ChatRoomDTO newRoom = new ChatRoomDTO(roomName, roomCode, hour, min);
                 myRef.child("chatting").child(roomName).setValue(newRoom);
                 Toast.makeText(getApplicationContext(), "채팅방이 생성되었습니다.", Toast.LENGTH_SHORT).show();
 

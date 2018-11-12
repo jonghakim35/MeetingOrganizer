@@ -2,13 +2,14 @@ package com.example.jongha.meetingorganizer;
 
 public class ChatRoomDTO {
 
-    private String roomCode, estHour, estMin;
+    private String roomCode, estHour, estMin, roomName;
 
     public ChatRoomDTO(){
 
     }
 
-    public ChatRoomDTO(String roomCode, String estHour, String estMin) {
+    public ChatRoomDTO(String roomName, String roomCode, String estHour, String estMin) {
+        this.roomName = roomName;
         this.roomCode = roomCode;
         this.estHour = estHour;
         this.estMin = estMin;
@@ -25,4 +26,6 @@ public class ChatRoomDTO {
     public String getEstMin() {
         return estMin;
     }
+
+    public String getRoomName() { return roomName; }
 }

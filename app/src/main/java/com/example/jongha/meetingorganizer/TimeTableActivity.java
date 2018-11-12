@@ -24,9 +24,9 @@ public class TimeTableActivity extends AppCompatActivity {
 
     private FloatingActionButton addScheduleBtn;
 
-    DatabaseReference dref;
-    ListView listview;
-    final ScheduleListViewAdapter adapter = new ScheduleListViewAdapter();
+    private DatabaseReference dref;
+    private ListView listview;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class TimeTableActivity extends AppCompatActivity {
 
         //listview 연결, adapter 생성과 연결, dref연결
         listview=(ListView)findViewById(R.id.schedule_list_view);
+        final ScheduleListViewAdapter adapter = new ScheduleListViewAdapter();
         listview.setAdapter(adapter);
         dref = FirebaseDatabase.getInstance().getReference("timetables/test1999");
         //dref change to path of logged-in user하기
@@ -55,7 +56,7 @@ public class TimeTableActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                adapter.addItem(dataSnapshot.getValue(ScheduleDTO.class));
+                adapter.removeItem(dataSnapshot.getValue(ScheduleDTO.class));
                 adapter.notifyDataSetChanged();
             }
 
@@ -82,10 +83,8 @@ public class TimeTableActivity extends AppCompatActivity {
                 String[] infoOfSchedule = new String[] {item.getActivityName(), item.getStartHour(), item.getStartMin(), item.getEndHour(), item.getEndMin(), item.getDayOfWeek()};
                 intent.putExtra("dataStrings", infoOfSchedule);
                 startActivity(intent);
-                onPause();
             }
         });
-
 
 
         //스케쥴 추가 버튼 onclicklistner
@@ -96,7 +95,5 @@ public class TimeTableActivity extends AppCompatActivity {
                 startActivity(new Intent(TimeTableActivity.this, NewScheduleActivity.class));
             }
         });
-
     }
-
 }
