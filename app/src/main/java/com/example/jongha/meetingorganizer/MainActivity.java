@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,6 +67,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String schName = (String)parent.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, RoomEnterActivity.class);
+                intent.putExtra("roomName", schName);
+                startActivity(intent);
+            }
+        });
+
+
+
+        //밑 버튼 2개
         roomCreateBtn = findViewById(R.id.room_create_btn);
         timeTableBtn = findViewById(R.id.timetable_modify_btn);
 
