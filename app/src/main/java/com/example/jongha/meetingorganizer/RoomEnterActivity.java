@@ -56,6 +56,8 @@ public class RoomEnterActivity extends Activity {
                            startActivity(intent);
                            finish();
                        }
+                       else
+                           Toast.makeText(getApplicationContext(), "참여코드가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                    }
 
                    @Override

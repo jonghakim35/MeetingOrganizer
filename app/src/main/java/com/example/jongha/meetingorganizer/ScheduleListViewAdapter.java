@@ -63,6 +63,10 @@ public class ScheduleListViewAdapter extends BaseAdapter {
     }
 
     public void removeItem(ScheduleDTO gotItem){
-        listViewItemList.remove(gotItem);
+        String removeName = gotItem.getActivityName();
+        for(ScheduleDTO sche : listViewItemList){
+            if(sche.getActivityName().equals(removeName))
+                listViewItemList.remove(sche);
+        }
     }
 }

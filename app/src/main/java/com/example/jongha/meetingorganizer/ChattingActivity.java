@@ -40,7 +40,7 @@ public class ChattingActivity extends AppCompatActivity {
 
         //채팅방 user목록에 사용자 추가하기
 
-        sendMsgText = findViewById(R.id.sendMessageText);
+       sendMsgText = findViewById(R.id.sendMessageText);
         roomNameView = findViewById(R.id.room_name_view);
         createTimeBtn = findViewById(R.id.create_meet_time_btn);
         chatListView = findViewById(R.id.chat_list_view);
@@ -58,6 +58,7 @@ public class ChattingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userName = "5";
+                //여기 바꾸기
 
                 sendMsg = sendMsgText.getText().toString();
                 ChatDTO chat = new ChatDTO(userName, sendMsg);
