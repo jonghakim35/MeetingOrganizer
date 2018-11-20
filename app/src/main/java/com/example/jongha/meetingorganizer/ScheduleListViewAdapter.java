@@ -8,11 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ScheduleListViewAdapter extends BaseAdapter {
 
 
     private ArrayList<ScheduleDTO> listViewItemList = new ArrayList<ScheduleDTO>();
+    private String removeName;
 
     //ScheduleListViewAdapter 생성
     public ScheduleListViewAdapter() {
@@ -62,11 +64,16 @@ public class ScheduleListViewAdapter extends BaseAdapter {
         listViewItemList.add(gotItem);
     }
 
+
     public void removeItem(ScheduleDTO gotItem){
         String removeName = gotItem.getActivityName();
         for(ScheduleDTO sche : listViewItemList){
-            if(sche.getActivityName().equals(removeName))
+            if(sche.getActivityName().equals(removeName)) {
                 listViewItemList.remove(sche);
+                break;
+            }
         }
     }
+
+
 }

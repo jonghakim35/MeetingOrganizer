@@ -3,7 +3,6 @@ package com.example.jongha.meetingorganizer;
 public class ScheduleDTO {
 
     private String startHour, endHour, startMin, endMin, dayOfWeek, activityName;
-    private String ListViewTime;
 
     public ScheduleDTO(){
 
