@@ -13,25 +13,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChattingActivity extends AppCompatActivity {
 
-    private String roomName, userName, sendMsg;
+    private String roomName, userName, sendMsg, estHour, estMin;
+    private int estTime;
     private TextView roomNameView;
     private EditText sendMsgText;
     private Button createTimeBtn, sendMsgBtn;
     private ListView chatListView;
     private DatabaseReference dref = FirebaseDatabase.getInstance().getReference("chatting");
     private ArrayList<String> chatsArray = new ArrayList<>();
+    private ArrayList<ScheduleDTO> schedulesArray = new ArrayList<>();
+    private ArrayList<String> possibleArray = new ArrayList<>();
+    private DatabaseReference estHourRef, estMinRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +52,43 @@ public class ChattingActivity extends AppCompatActivity {
         chatListView = findViewById(R.id.chat_list_view);
         sendMsgBtn = findViewById(R.id.send_message_btn);
 
-        final String roomName = getIntent().getStringExtra("roomName");
+        roomName = getIntent().getStringExtra("roomName");
         roomNameView.setText(roomName);
 
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, chatsArray) ;
         chatListView.setAdapter(adapter) ;
+
+        dref.child(roomName).child("estHour").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                estHour = dataSnapshot.getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        dref.child(roomName).child("estMin").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                estMin = dataSnapshot.getValue(String.class);
+                estTime =  60 * Integer.parseInt(estHour) + Integer.parseInt(estMin);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*realtime database에서 child 자료를 가져올떄 유의사항. 일단 onCreate 모든 문장 실행 이후 addValueEventListener가 실행되는 것 같음.
+        즉, 위와 같이 코드를 짜고 이 주석이 있는 부분에 estTime을 출력하는 Toast를 띄우면 0이 나오는데, 그 이유는 onCreate(Toast 실행) -> Listner(estTime 계산)이기 때문
+        따라서, onCreate -> Listner(estTime 계산) -> onClick(Toast 실행) 하면 잘 된다.
+         */
+
 
 
         //전송 버튼 클릭
@@ -102,6 +140,31 @@ public class ChattingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //시간표 생성
+
+                Toast.makeText(getApplicationContext(), String.valueOf(estTime), Toast.LENGTH_SHORT).show();
+
+
+                //ScheduleDTO 생성자 String activityName, String startHour, String startMin, String endHour, String endMin, String dayOfWeek
+
+                //모든 유저의 스케쥴들을 받아와서 schedulesArray에 저장했다고 가정
+                /*schedulesArray.add(new ScheduleDTO("monTest1", "12", "00", "14", "00", "월"));
+                schedulesArray.add(new ScheduleDTO("monTest2", "15", "00", "16", "00", "월"));
+                schedulesArray.add(new ScheduleDTO("monTest3", "8", "00", "11", "00", "월"));
+                schedulesArray.add(new ScheduleDTO("tueTest1", "15", "00", "16", "00", "화"));
+                schedulesArray.add(new ScheduleDTO("tueTest2", "15", "30", "17", "00", "화"));
+                schedulesArray.add(new ScheduleDTO("tuetest3", "15", "30", "15", "45", "화"));
+                */
+
+                /*
+                for(int i = 480; i <= 1320; i += 15){
+                    for(schedule : schedulesArray){
+
+
+                    }
+                }
+                */
+
+
             }
         });
 

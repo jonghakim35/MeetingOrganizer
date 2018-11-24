@@ -47,7 +47,6 @@ public class RoomEnterActivity extends Activity {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                        realRoomCode = dataSnapshot.getValue().toString();
-
                        //enter 확인
                        if(enteredRoomCode.equals(realRoomCode)){
                            Toast.makeText(getApplicationContext(), "성공.", Toast.LENGTH_SHORT).show();
