@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ChattingActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class ChattingActivity extends AppCompatActivity {
     private ArrayList<String> chatsArray = new ArrayList<>();
     private ArrayList<ScheduleDTO> schedulesArray = new ArrayList<>();
     private ArrayList<String> possibleArray = new ArrayList<>();
-    private DatabaseReference estHourRef, estMinRef;
+    private ArrayList<ScheduleDTO> monArray = new ArrayList<>(), tueArray = new ArrayList<>(), wedArray = new ArrayList<>(), thuArray = new ArrayList<>(), friArray = new ArrayList<>(), satArray = new ArrayList<>(), sunArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,32 +142,135 @@ public class ChattingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //시간표 생성
 
-                Toast.makeText(getApplicationContext(), String.valueOf(estTime), Toast.LENGTH_SHORT).show();
 
 
                 //ScheduleDTO 생성자 String activityName, String startHour, String startMin, String endHour, String endMin, String dayOfWeek
 
-                //모든 유저의 스케쥴들을 받아와서 schedulesArray에 저장했다고 가정
-                /*schedulesArray.add(new ScheduleDTO("monTest1", "12", "00", "14", "00", "월"));
+                schedulesArray.add(new ScheduleDTO("monTest1", "12", "00", "14", "00", "월"));
                 schedulesArray.add(new ScheduleDTO("monTest2", "15", "00", "16", "00", "월"));
                 schedulesArray.add(new ScheduleDTO("monTest3", "8", "00", "11", "00", "월"));
                 schedulesArray.add(new ScheduleDTO("tueTest1", "15", "00", "16", "00", "화"));
                 schedulesArray.add(new ScheduleDTO("tueTest2", "15", "30", "17", "00", "화"));
                 schedulesArray.add(new ScheduleDTO("tuetest3", "15", "30", "15", "45", "화"));
-                */
-
-                /*
-                for(int i = 480; i <= 1320; i += 15){
-                    for(schedule : schedulesArray){
 
 
+
+                //시간 = i 에서 i+estTime, 가능한 i는 possibleArray에 등록됨
+
+
+                for(int j = 0; j < schedulesArray.size(); j++){
+                    ScheduleDTO thisSchedule = schedulesArray.get(j);
+                    switch (thisSchedule.getDayOfWeek()){
+                        case "월": monArray.add(thisSchedule);
+                        break;
+
+                        case "화": tueArray.add(thisSchedule);
+                        break;
+
+                        case "수": wedArray.add(thisSchedule);
+                        break;
+
+                        case "목": thuArray.add(thisSchedule);
+                        break;
+
+                        case "금": friArray.add(thisSchedule);
+                        break;
+
+                        case "토": satArray.add(thisSchedule);
+                        break;
+
+                        case "일": sunArray.add(thisSchedule);
+                        break;
                     }
                 }
-                */
+
+                checkTimeByDate(monArray, "월");
+                checkTimeByDate(tueArray, "화");
+                checkTimeByDate(wedArray, "수");
+                checkTimeByDate(thuArray, "목");
+                checkTimeByDate(friArray, "금");
+                checkTimeByDate(satArray, "토");
+                checkTimeByDate(sunArray, "일");
+
+                //요일까지 고려하고나서 possibleArray가 0, 1, 2, 3이상일때에 따른 display
+                switch(possibleArray.size()){
+
+                    case 0:
+                        ChatDTO chat = new ChatDTO("추천 시간", "가능한 시간이 없습니다");
+                        dref.child(roomName).child("chats").push().setValue(chat);
+                        break;
+                    case 1:
+                        ChatDTO chat1 = new ChatDTO("추천 시간", possibleArray.get(0));
+                        dref.child(roomName).child("chats").push().setValue(chat1);
+                        break;
+                    case 2:
+                        ChatDTO chat2 = new ChatDTO("추천 시간", possibleArray.get(0));
+                        dref.child(roomName).child("chats").push().setValue(chat2);
+                        chat2 = new ChatDTO("추천 시간", possibleArray.get(1));
+                        dref.child(roomName).child("chats").push().setValue(chat2);
+                        break;
+
+                    default:
+                        Collections.shuffle(possibleArray);
+                        for(int i = 0; i < 3; i++){
+                            ChatDTO chat3 = new ChatDTO("추천 시간", possibleArray.get(i));
+                            dref.child(roomName).child("chats").push().setValue(chat3);
+                        }
+                        break;
+                }
+
 
 
             }
         });
 
     }
+
+    private int getStartTime(ScheduleDTO schedule){ return Integer.valueOf(schedule.getStartHour()) * 60 + Integer.valueOf(schedule.getStartMin());}
+    private int getEndTime(ScheduleDTO schedule) {return Integer.valueOf(schedule.getEndHour()) * 60 + Integer.valueOf(schedule.getEndMin());}
+    private String timeToString(int possibleTime) {return possibleTime/60 + "시 " + possibleTime%60 +"분"; }
+
+
+    private void checkTimeByDate(ArrayList<ScheduleDTO> gotSchedules, String dateOfWeek){
+
+        for(int i = 480; i <= 1320; i+=15){
+            int j;
+            //j가 있는 for문을 통해 모든 schedulesArray의 경우 다룸
+            for(j = 0; j < gotSchedules.size(); j++){
+                ScheduleDTO thisSchedule = gotSchedules.get(j);
+
+
+                if(getStartTime(thisSchedule) < i){
+                    if(!(getEndTime(thisSchedule) < i)) {
+                        break;
+                    }
+                }
+
+                else if(getStartTime(thisSchedule) > i){
+                    if(!(i + estTime < getStartTime(thisSchedule)))
+                        break;
+                }
+
+                else
+                    break;
+
+            }
+            if(possibleArray.size() > 500)
+                break;
+            if(j == gotSchedules.size() && j!=0)
+                possibleArray.add(dateOfWeek + "요일 " + timeToString(i));
+
+        }
+
+        if(gotSchedules.size() == 0){
+            for(int i = 480 ; i <=1320; i+=30) {
+                possibleArray.add(dateOfWeek + "요일 " + timeToString(i));
+                if(possibleArray.size() > 500)
+                    break;
+            }
+        }
+
+    }
+
+
 }
