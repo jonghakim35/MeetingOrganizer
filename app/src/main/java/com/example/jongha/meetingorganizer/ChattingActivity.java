@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +36,8 @@ public class ChattingActivity extends AppCompatActivity {
     private ArrayList<ScheduleDTO> schedulesArray = new ArrayList<>();
     private ArrayList<String> possibleArray = new ArrayList<>();
     private ArrayList<ScheduleDTO> monArray = new ArrayList<>(), tueArray = new ArrayList<>(), wedArray = new ArrayList<>(), thuArray = new ArrayList<>(), friArray = new ArrayList<>(), satArray = new ArrayList<>(), sunArray = new ArrayList<>();
+    private ArrayList<String> usersArray = new ArrayList<>();
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,68 @@ public class ChattingActivity extends AppCompatActivity {
 
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, chatsArray) ;
         chatListView.setAdapter(adapter) ;
+
+
+        dref.child(roomName).child("users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                usersArray.add(dataSnapshot.getValue(String.class));
+                count++;
+                if(count >= dataSnapshot.getChildrenCount()){
+                    for(String user : usersArray) {
+                        dref1.child(user).addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                ScheduleDTO scheduleDTO = dataSnapshot.getValue(ScheduleDTO.class);
+                                schedulesArray.add(scheduleDTO);
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         dref.child(roomName).child("estHour").addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,10 +147,11 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-        /*realtime database에서 child 자료를 가져올떄 유의사항. 일단 onCreate 모든 문장 실행 이후 addValueEventListener가 실행되는 것 같음.
+        /*
+        realtime database에서 child 자료를 가져올떄 유의사항. 일단 onCreate 모든 문장 실행 이후 addValueEventListener가 실행되는 것 같음.
         즉, 위와 같이 코드를 짜고 이 주석이 있는 부분에 estTime을 출력하는 Toast를 띄우면 0이 나오는데, 그 이유는 onCreate(Toast 실행) -> Listner(estTime 계산)이기 때문
         따라서, onCreate -> Listner(estTime 계산) -> onClick(Toast 실행) 하면 잘 된다.
-         */
+        */
 
 
 
@@ -134,37 +200,14 @@ public class ChattingActivity extends AppCompatActivity {
         });
 
 
+
+
         //시간표 받아오기. 모든 user에 대해 하는걸로 수정해야함
-        dref1.child("test1999").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                ScheduleDTO scheduleDTO = dataSnapshot.getValue(ScheduleDTO.class);
-                schedulesArray.add(scheduleDTO);
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         createTimeBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 //시간표 생성
@@ -285,6 +328,8 @@ public class ChattingActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 
 }
