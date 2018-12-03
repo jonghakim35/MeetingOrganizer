@@ -30,6 +30,7 @@ public class ChattingActivity extends AppCompatActivity {
     private Button createTimeBtn, sendMsgBtn;
     private ListView chatListView;
     private DatabaseReference dref = FirebaseDatabase.getInstance().getReference("chatting");
+    private DatabaseReference dref1 = FirebaseDatabase.getInstance().getReference("timetables");
     private ArrayList<String> chatsArray = new ArrayList<>();
     private ArrayList<ScheduleDTO> schedulesArray = new ArrayList<>();
     private ArrayList<String> possibleArray = new ArrayList<>();
@@ -133,23 +134,40 @@ public class ChattingActivity extends AppCompatActivity {
         });
 
 
+        //시간표 받아오기. 모든 user에 대해 하는걸로 수정해야함
+        dref1.child("test1999").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                ScheduleDTO scheduleDTO = dataSnapshot.getValue(ScheduleDTO.class);
+                schedulesArray.add(scheduleDTO);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         createTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //시간표 생성
-
-
-
-                //ScheduleDTO 생성자 String activityName, String startHour, String startMin, String endHour, String endMin, String dayOfWeek
-
-                schedulesArray.add(new ScheduleDTO("monTest1", "12", "00", "14", "00", "월"));
-                schedulesArray.add(new ScheduleDTO("monTest2", "15", "00", "16", "00", "월"));
-                schedulesArray.add(new ScheduleDTO("monTest3", "8", "00", "11", "00", "월"));
-                schedulesArray.add(new ScheduleDTO("tueTest1", "15", "00", "16", "00", "화"));
-                schedulesArray.add(new ScheduleDTO("tueTest2", "15", "30", "17", "00", "화"));
-                schedulesArray.add(new ScheduleDTO("tuetest3", "15", "30", "15", "45", "화"));
-
-
 
                 //시간 = i 에서 i+estTime, 가능한 i는 possibleArray에 등록됨
 
