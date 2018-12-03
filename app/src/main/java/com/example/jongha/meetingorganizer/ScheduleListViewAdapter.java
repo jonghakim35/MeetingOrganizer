@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ScheduleListViewAdapter extends BaseAdapter {
 
