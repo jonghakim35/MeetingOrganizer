@@ -82,7 +82,10 @@ public class RoomEnterActivity extends Activity {
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                        realRoomCode = dataSnapshot.getValue().toString();
                        //enter 확인
+
+
                        if(enteredRoomCode.equals(realRoomCode)){
+                           //test1999부분을 실제 유저 이름(timetables 아래 들어갈 이름)으로 바꿔주면 됨
                            if(!usersArray.contains("test1999")){ dref1.child(realRoomName).child("users").push().setValue("test1999");}
 
 

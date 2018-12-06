@@ -10,7 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +28,20 @@ public class MainActivity extends AppCompatActivity {
     private ListView listview;
     private DatabaseReference dref;
     private ArrayList<String> roomNameArray = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+        Toast.makeText(getApplicationContext(), user.getDisplayName() + " ID로 접속되었습니다", Toast.LENGTH_SHORT).show();
+
+
 
         //채팅방의 listview 구현 부분
         listview = (ListView) findViewById(R.id.room_list_view);
