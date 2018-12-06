@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,12 +19,17 @@ public class NewScheduleActivity extends Activity {
     private Button scheduleConfirmBtn;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_new_schedule);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         scheduleNameEdit = findViewById(R.id.schedule_name);
         startHourEdit  = findViewById(R.id.start_hour);
@@ -44,7 +51,7 @@ public class NewScheduleActivity extends Activity {
                 endMin = endMinEdit.getText().toString();
                 dayOfWeek = dayOfWeekEdit.getText().toString();
                 //userID = database에서 받아오기(현재 사용자 ID)
-                String userID = "test1999";
+                String userID = user.getDisplayName();
                 ScheduleDTO sche = new ScheduleDTO(activityName, startHour, startMin, endHour, endMin, dayOfWeek);
 
                 myRef.child("timetables").child(userID).child(activityName).setValue(sche);

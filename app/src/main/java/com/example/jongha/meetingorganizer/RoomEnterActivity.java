@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +32,14 @@ public class RoomEnterActivity extends Activity {
     private ArrayList<String> usersArray = new ArrayList<>();
     private DatabaseReference dref1 = FirebaseDatabase.getInstance().getReference("chatting");
     private String realRoomName;
+    private FirebaseUser user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_room_enter);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         enterConfirmBtn = findViewById(R.id.confirm_enter_btn);
         roomCodeEdit = findViewById(R.id.room_code_edit);
@@ -86,7 +91,7 @@ public class RoomEnterActivity extends Activity {
 
                        if(enteredRoomCode.equals(realRoomCode)){
                            //test1999부분을 실제 유저 이름(timetables 아래 들어갈 이름)으로 바꿔주면 됨
-                           if(!usersArray.contains("test1999")){ dref1.child(realRoomName).child("users").push().setValue("test1999");}
+                           if(!usersArray.contains(user.getDisplayName())){ dref1.child(realRoomName).child("users").push().setValue(user.getDisplayName());}
 
 
                            Toast.makeText(getApplicationContext(), "성공.", Toast.LENGTH_SHORT).show();

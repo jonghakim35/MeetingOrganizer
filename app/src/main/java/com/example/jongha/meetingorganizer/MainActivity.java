@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        Toast.makeText(getApplicationContext(), user.getDisplayName() + " ID로 접속되었습니다", Toast.LENGTH_SHORT).show();
+        if(user.getDisplayName() != null)
+            Toast.makeText(getApplicationContext(), user.getDisplayName() + " ID로 접속되었습니다", Toast.LENGTH_SHORT).show();
 
 
 

@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +25,8 @@ public class TimeTableActivity extends AppCompatActivity {
 
     private DatabaseReference dref;
     private ListView listview;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
 
     @Override
@@ -30,11 +34,15 @@ public class TimeTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+
         //listview 연결, adapter 생성과 연결, dref연결
         listview=(ListView)findViewById(R.id.schedule_list_view);
         final ScheduleListViewAdapter adapter = new ScheduleListViewAdapter();
         listview.setAdapter(adapter);
-        dref = FirebaseDatabase.getInstance().getReference("timetables/test1999");
+        dref = FirebaseDatabase.getInstance().getReference("timetables").child(user.getDisplayName());
         //dref change to path of logged-in user하기
 
 

@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +40,7 @@ public class ChattingActivity extends AppCompatActivity {
     private ArrayList<ScheduleDTO> monArray = new ArrayList<>(), tueArray = new ArrayList<>(), wedArray = new ArrayList<>(), thuArray = new ArrayList<>(), friArray = new ArrayList<>(), satArray = new ArrayList<>(), sunArray = new ArrayList<>();
     private ArrayList<String> usersArray = new ArrayList<>();
     private int count = 0;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class ChattingActivity extends AppCompatActivity {
         createTimeBtn = findViewById(R.id.create_meet_time_btn);
         chatListView = findViewById(R.id.chat_list_view);
         sendMsgBtn = findViewById(R.id.send_message_btn);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         roomName = getIntent().getStringExtra("roomName");
         roomNameView.setText(roomName);
@@ -159,7 +164,7 @@ public class ChattingActivity extends AppCompatActivity {
         sendMsgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userName = "5";
+                userName = user.getDisplayName();
                 //여기 바꾸기
 
                 sendMsg = sendMsgText.getText().toString();

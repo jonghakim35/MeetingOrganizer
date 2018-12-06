@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,7 +17,8 @@ public class DeleteScheduleActivity extends Activity {
 
     private Button deleteConfirmBtn, deleteRejectBtn;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = database.getReference().child("timetables/test1999");
+    private DatabaseReference myRef;
+    private FirebaseUser user;
     //logged-in user의 path로 바꾸기
 
     @Override
@@ -23,6 +26,11 @@ public class DeleteScheduleActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_delete_schedule);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        myRef = database.getReference("timetables").child(user.getDisplayName());
+
 
         deleteConfirmBtn = findViewById(R.id.delete_confirm_btn);
         deleteRejectBtn = findViewById(R.id.delete_reject_btn);
