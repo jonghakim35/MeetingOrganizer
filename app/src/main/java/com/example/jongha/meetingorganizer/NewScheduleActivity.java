@@ -52,12 +52,16 @@ public class NewScheduleActivity extends Activity {
                 dayOfWeek = dayOfWeekEdit.getText().toString();
                 //userID = database에서 받아오기(현재 사용자 ID)
                 String userID = user.getDisplayName();
-                ScheduleDTO sche = new ScheduleDTO(activityName, startHour, startMin, endHour, endMin, dayOfWeek);
 
-                myRef.child("timetables").child(userID).child(activityName).setValue(sche);
+                if(!activityName.equals("") && !startHour.equals("") && !startMin.equals("") && !endHour.equals("") && !endMin.equals("") && !dayOfWeek.equals("")) {
 
-                Toast.makeText(getApplicationContext(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                finish();
+                    ScheduleDTO sche = new ScheduleDTO(activityName, startHour, startMin, endHour, endMin, dayOfWeek);
+
+                    myRef.child("timetables").child(userID).child(activityName).setValue(sche);
+
+                    Toast.makeText(getApplicationContext(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
 
