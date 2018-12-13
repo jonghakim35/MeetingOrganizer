@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,24 +64,25 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                email = emailEdit.getText().toString();
-                pwd = pwdEdit.getText().toString();
 
-                mAuth.signInWithEmailAndPassword(email, pwd)
-                        .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(!task.isSuccessful())
-                                    task.getException().getMessage();
-                                else
-                                {
-                                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                    email = emailEdit.getText().toString();
+                    pwd = pwdEdit.getText().toString();
+
+                    mAuth.signInWithEmailAndPassword(email, pwd)
+                            .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!task.isSuccessful())
+                                        task.getException().getMessage();
+                                    else {
+                                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }
-                            }
-                        });
-            }
+                            });
+                }
+
         });
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {

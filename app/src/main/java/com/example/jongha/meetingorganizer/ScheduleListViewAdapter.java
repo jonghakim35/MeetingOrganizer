@@ -13,7 +13,6 @@ public class ScheduleListViewAdapter extends BaseAdapter {
 
 
     private ArrayList<ScheduleDTO> listViewItemList = new ArrayList<ScheduleDTO>();
-    private String removeName;
 
     //ScheduleListViewAdapter 생성
     public ScheduleListViewAdapter() {
